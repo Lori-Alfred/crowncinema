@@ -327,7 +327,7 @@ grid-template-columns: repeat(5,1fr);
 /* end of upcoming */
 /* START OF SEATS.HTML */
 
-/* END OF SEATS.HTML */
+
 .theatrecontainer{
     display: grid;
     grid-template-columns: 3fr 1fr;
@@ -475,8 +475,73 @@ border-radius: 40px;
    filter: brightness(50%);
 }
 
+/* END OF SEATS.HTML */
 
 
+/* START OF BOOKINGS.HTML */
+.bookingcontainer{
+    display: flex;
+    justify-content: space-between;
+    height: 90vh;
+    background-color: #000000;
+    color: #ffffff;
+    
+}
+.bookingcontainer img {
+    object-fit: cover;
+    display: block;
+    height: auto;
+    width: 500px;
+    opacity: 0.6;
+}
+.bookingformsection{
+    display: flex;
+    flex-direction: column;
+    padding-left: 30px;
+}
+.bookingformsection h1{
+    padding-top: 90px;
+    font-size:3rem;
+}
+.bookinginput {
+   width: 400px;
+   padding:15px 0px;
+   margin-top: 10px;
+   border-radius: 10px;
+   outline: none;
+   border: 1px solid #2F383F;
+   background-color:rgba(47, 56, 63, 0.7);
+   
+}
+
+.bookingformsection button{
+    display: block;
+    padding: 20px 40px;
+    margin-top: 1rem;
+    border: 1px solid  #161A1D;
+    border-radius: 40px;
+    color: #ffffff;
+    background-color: #0CB8AE;
+}
+/* END OF BOOKINGS.HTML */
+ /* start of food.HTML */
+.foodbackground{
+    /* position: relative; */
+    background: url(images/food.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
+}
+.foodbackground h1{
+    position: absolute;
+    top: 50%;
+    left:20% ;
+color: #ffffff;
+    text-align: center;
+
+}
 /* start of footer */
 
 .footercontainer{
