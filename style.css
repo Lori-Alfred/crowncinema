@@ -4,6 +4,10 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+  
+}
+html{
+    scroll-behavior: smooth;
 }
 body {
 font-family: 'Roboto Slab', serif;
@@ -11,7 +15,7 @@ display: flex;
 flex-direction: column;
 width: 100%;
 
-/* overflow-x: hidden; */
+overflow-x: hidden;
 
 }
 
@@ -20,16 +24,17 @@ width: 100%;
     background-color: transparent;
     position:absolute;
     left: 0;
-    background-color: black;
+    background-color:rgba(0,0, 0, 0.3);
+  
+   
     width: 100%;
 
 }
 .navbar{
     display: flex;
-    
     justify-content:space-around;
     align-items:center;
-    padding: 20px 40px;
+    padding: 0px 40px;
     list-style: none;
     width: 100%;
   
@@ -37,19 +42,29 @@ width: 100%;
 }
 
 
+
 .navlist{
    margin-right:200px;
 }
+
 .navbar li a{
     text-decoration: none;
     color: #ffffff;
     
+    
 }
+.navbar li a:hover{
+    color: #4D194D;
+    
+    
+}
+
 /* end navbar styling */
 
 /* start of image slider styling */
 .slidercontainer{
     position:relative; 
+    background-color: #000000;
     width: 100%;
     height: 100vh;
 
@@ -77,9 +92,10 @@ width: 100%;
 }
 .slides{
 display: flex;
-justify-content:space-around;
-
- align-items: center;
+justify-content:space-between;
+padding-left:60px;
+padding-right: 60px;
+align-items: center;
 background-size: cover;
 background-position: center;
 background-repeat: no-repeat;
@@ -89,8 +105,7 @@ width: 100%;
 
 }
 .slide1{
-    background-image: url(images/movie1.jpg);
-   
+    background-image: url(images/movie1.jpg); 
     
 }
 .slide2{
@@ -104,38 +119,88 @@ width: 100%;
 display: block;
 margin-top: 1rem;
 }
+.movietitle{
+text-transform: uppercase;
+color: #ffffff;
+}
+.moviedetails{
+font-weight: 800;
+font-size: large;
+color:#ffffff;
+}
 .book{
-    display: block;
-    margin-top: 2rem;
+display: block;
+ margin-top: 2rem;
+padding: 10px 30px;
+border: solid 1px #A4161A;
+;
+border-radius: 30px;
+outline: none;
+background-color:rgba(164, 22, 26, 1);
+
+color: #ffffff;
+}
+.book:hover{
+    background-color: #660708; 
+}
+.book a{
+text-decoration: none;
+color:#ffffff;
 }
 .playtrailer{
     text-align: center;
 }
+.playtrailer h2{
+text-transform: uppercase;
+color:rgba(250, 243, 243, 0.514);
+
+}
+
 
 .playtrailer .fas{
     display: block;
-    border: 1px solid grey;
-    padding: 1rem;
-    font-size: 3rem;
-    border-radius: 50%;
-    background-color: rgb(247, 205, 255);
+    color: #4D194D;
+    font-size: 2rem;
+    border-radius: 100%;
+    padding: 30px 0px;
     cursor: pointer;
- transform: scale(1.2);
+   animation-name: pop;
+   animation-duration:2s;
+   animation-iteration-count: infinite;
+   animation-direction: alternate;
+   animation-delay: 2s;
+   animation-fill-mode: both;
+   animation-timing-function: ease-in-out;
 
+}
+.playtrailer .fas:hover{
+    color: #703170;
+   
 
 
 }
+
 .playtrailer h2{
     display: block;
-    margin-top: 1rem;
+  
     font-weight: 400;
 }
-
+ @keyframes pop { 
+     0%{
+ font-size: 2rem;
+     }
+   
+     100%{
+font-size: 5rem;
+     }
+     
+ }
 /* end of .slidercontainer */
 
 /* start of nowshowingcontainer */
 
 .nowshowingcontainer{
+
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -523,10 +588,13 @@ border-radius: 40px;
     color: #ffffff;
     background-color: #0CB8AE;
 }
+.bookingformsection button:hover{
+    filter: brightness(80%)
+}
 /* END OF BOOKINGS.HTML */
  /* start of food.HTML */
 .foodbackground{
-    /* position: relative; */
+ 
     background: url(images/food.jpg);
     background-position: center;
     background-repeat: no-repeat;

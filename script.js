@@ -51,6 +51,6 @@ function slideLeft() {
         current = -1;
       }
       slideRight();
-  }, 5000);
+  }, 6000);
   startSlide();
   
