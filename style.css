@@ -21,13 +21,10 @@ overflow-x: hidden;
 
 /* nav bar styling */
 .navi{
-    background-color: transparent;
-    position:absolute;
-    left: 0;
-    background-color:rgba(0,0, 0, 0.3);
-  
-   
-    width: 100%;
+position:absolute;
+left: 0;
+background-color:rgba(0,0, 0, 0.3);
+ width: 100%;
 
 }
 .navbar{
@@ -63,7 +60,7 @@ overflow-x: hidden;
 
 /* start of image slider styling */
 .slidercontainer{
-    position:relative; 
+    /* position:relative;  */
     background-color: #000000;
     width: 100%;
     height: 100vh;
@@ -103,9 +100,11 @@ height: 100vh;
 width: 100%;
 
 
+
 }
 .slide1{
     background-image: url(images/movie1.jpg); 
+   
     
 }
 .slide2{
@@ -209,6 +208,9 @@ font-size: 5rem;
     padding-top: 10px;
     height: 120vh;
     position: relative;
+    overflow-x:auto;
+-webkit-overflow-scrolling: touch;
+ 
   
 }
 .nowshowingheader{
@@ -227,29 +229,26 @@ font-size: 5rem;
 
 }
 .moviessection{ 
-position: relative;
 display: grid;
-grid-template-columns: repeat(5,1fr);
- justify-content: center;
+grid-auto-flow: column;
+ justify-content: start;
  align-content: center;
- padding: 5px 10px;
+ padding: 5px 15px;
+
  text-align: center;
 
+
 }
-.leftarrow1{
-    position: absolute;
-    top: 30%;
-}
-.rightarrow1{
-    position: absolute;
-    left: 98%;
-    top: 30%;
- 
-}
+
+
+
+
+
 .movie{
     display: flex;
+    flex-wrap: wrap;
     flex-direction: column;
-    width: 100%;
+    width:250px;
     height: 100%;
 
    
@@ -263,11 +262,17 @@ opacity: 0.8;
 font-size:small;
 }
 .moviedetails{
-    text-align: center;
-    padding-bottom: 20px;
+    text-align:center;
+    padding-bottom: 35px;
+  
     font-size: 10px;
     font-weight: normal;
 }
+.moviedetails p{
+    width: 100%;
+    height: 2rem;
+}
+
 .imageandtitle img{
 object-fit: cover;
 max-width: 210px;
@@ -282,6 +287,7 @@ transition: transform 1s ease-in;
 .watchtrailer{
     text-align:center;
     padding-bottom: 20px;
+    cursor: pointer;
 }
 
 
@@ -295,14 +301,19 @@ padding-left: 5px;
 }
 
 .bookbutton button{
+    
     padding: 10px 80px;
-    border: 1px solid #E80F0C;
+ border: 1px solid #E80F0C;
     border-radius: 30px;
     background-color: #E80F0C;
-    color: #ffffff;
+   
 }
 .bookbutton button:hover{
   filter: brightness(90%);
+}
+.bookbutton button a{
+text-decoration: none;
+color: #ffffff;
 }
 
 /* end of now showing */
@@ -319,6 +330,7 @@ padding-left: 5px;
     z-index: 4;
     
 }
+
 
 .bookingwords p{
  margin-top: 20px;
@@ -348,8 +360,11 @@ color: #ffffff;
     background-color: #000000;
     color: #ffffff;
     padding-top: 10px;
-    height: 90vh;
+    height: 80vh;
     position: relative;
+    overflow-x:auto;
+    -webkit-overflow-scrolling: touch;
+    
 }
 
 .upcomingmoviesheader{
@@ -369,6 +384,21 @@ color: #ffffff;
 }
 
 .upcomingmoviessection {
+
+display: grid;
+grid-auto-flow: column;
+ justify-content: start;
+ align-content: center;
+ padding: 5px 15px;
+ text-align: center;
+ 
+ 
+}
+.upcomingmovie{
+    width:250px;
+    height: 100%;
+}
+/* .upcomingmoviessection {
  position: relative;
 display: grid;
 grid-template-columns: repeat(5,1fr);
@@ -376,18 +406,9 @@ grid-template-columns: repeat(5,1fr);
  align-content: center;
  padding: 5px 10px;
  text-align: center;
-}
+} */
 
-.leftarrow{
-    position: absolute;
-    top: 50%;
-}
-.rightarrow{
-    position: absolute;
-    left: 98%;
-    top: 45%;
- 
-}
+
 
 /* end of upcoming */
 /* START OF SEATS.HTML */
@@ -501,13 +522,25 @@ list-style:none;
 .theatreform h4{
     text-align: center;
     padding-bottom: 1rem;
-    padding-top: 3rem;
+    padding-top: 1.5rem;
 }
 .theatreformheader{
     display: flex;
     justify-content: space-between;
     align-items: center;
 
+}
+
+.theatreformheader h5 a {
+    text-decoration:none;
+    color: #ffffff;
+
+    
+}
+.theatreformheader h5 a:hover {
+  
+color: #0CB8AE;
+    
 }
 form label{
     display: block;
@@ -525,6 +558,9 @@ form label{
     color: #ffffff;
     border-radius: 5px;
 
+}
+option{
+    background-color: #161A1D;
 }
 .formbutton{
     margin-top: 10px;
