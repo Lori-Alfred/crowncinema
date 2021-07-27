@@ -1,11 +1,72 @@
 // selectors
-let arrowLeft = document.querySelector('.leftarrow');
-let arrowRight = document.querySelector('.rightarrow');
-let sliderImages=document.querySelectorAll('.slides');
+const arrowLeft = document.querySelector('.leftarrow');
+const arrowRight = document.querySelector('.rightarrow');
+const sliderImages=document.querySelectorAll('.slides');
+const sliderImage1=document.querySelector('.slide1');
+const sliderImage2=document.querySelector('.slide2');
+const sliderImage3=document.querySelector('.slide3');
+const slideMovieTitle=document.querySelectorAll('.movietitle');
+const slideMovieDetails=document.querySelectorAll('.moviedetails');
+const slideBookNow=document.querySelector('.book');
 current=0;
+const moviesection =document.querySelector('.moviessection');
+const upcomingmoviesection =document.querySelector('.upcomingmoviessection');
+const baseUrl ='https://api.themoviedb.org/3';
+const apiKey ='api_key=06b3976eb4a79e0488be027200e686a1';
+const nowPlaying = '/movie/now_playing?';
+const upcomingMovies = '/movie/upcoming?';
+const moviestored= baseUrl+nowPlaying+apiKey ;
+const upcomingstored= baseUrl+upcomingMovies+apiKey ;
+const imageBaseUrl='https://image.tmdb.org/t/p/w500';
+const backgroundImageUrl='https://image.tmdb.org/t/p/original';
 
+console.log(slideMovieDetails[0]);
 
 // image slider 
+
+ async function backgroundData (url) {
+    let urlNow = await fetch(url);
+    let bgi= await urlNow.json();
+    let nowResults=bgi.results;
+  apiSlides(nowResults);
+  
+    }
+
+    
+function  apiSlides (dt) {
+dt.forEach((elem ,index) => {
+  const{title,overview,backdrop_path}=elem;
+  if(index===0){
+    sliderImage1.style.backgroundImage=`url(${backgroundImageUrl+backdrop_path})`;
+    slideMovieTitle[0].textContent=`${title}`;
+    slideMovieDetails[0].textContent=`${overview}`;
+
+
+  }
+  if(index===1){
+    sliderImage2.style.backgroundImage=`url(${backgroundImageUrl+backdrop_path})`;
+    slideMovieTitle[1].innerHTML=`${title}`;
+    slideMovieDetails[1].textContent=`${overview}`;
+
+  }
+  if(index===2){
+    sliderImage3.style.backgroundImage=`url(${backgroundImageUrl+backdrop_path})`;
+    slideMovieTitle[2].textContent=`${title}`;
+    slideMovieDetails[2].textContent=`${overview}`;
+
+  }
+
+});
+  
+ 
+
+
+
+    
+  };
+
+
+backgroundData(moviestored);
 //  reset slider
 function reset () {
     for(i=0; i<sliderImages.length; i++) {
@@ -54,3 +115,81 @@ function slideLeft() {
   }, 6000);
   startSlide();
   
+
+ 
+
+  async function movieData (url) {
+  let urlNow = await fetch(url);
+  let moviesresponse = await urlNow.json();
+  let moviesResults=moviesresponse.results;
+  showMovies(moviesResults);
+  
+  
+
+  }
+  async function upcomingData (url) {
+  let urlNow = await fetch(url);
+  let upcomingresponse = await urlNow.json();
+  let upcomingResults=upcomingresponse.results;
+  
+  upcoming(upcomingResults);
+  
+
+  }
+
+  
+
+  function showMovies (data) {
+  moviesection.innerHTML="";
+data.forEach(mov => {
+  const{title,overview,backdrop_path,genre_ids,poster_path,id,video}=mov;
+  
+let movies =document.createElement('div');
+movies.className='movie';
+movies.innerHTML =`<div class="imageandtitle">
+<img src="${imageBaseUrl+poster_path}" alt="${title}">
+
+</div>
+<span class="moviename">${title}</span>
+<span class="genre"></span>
+<div class="moviedetails">
+<p>${overview}</p>
+
+
+</div>
+<div class="watchtrailer">
+<i class="far fa-play-circle"><a href="${video}">Watch Trailer</a> </i>
+</div>
+<div class="bookbutton">
+<button><a href="seats.html">Book Now</a></button>
+</div>`
+
+
+
+moviesection.appendChild(movies);
+});
+  }
+
+
+
+function upcoming (d) {
+  upcomingmoviesection.innerHTML="";
+  d.forEach(up => {
+    const{title,poster_path,release_date}=up;
+  let upcomingM =document.createElement('div');
+  upcomingM.className='upcomingmovie';
+  upcomingM.innerHTML =`<div class="imageandtitle">
+  <img src="${imageBaseUrl+poster_path}" alt="${title}">
+  
+</div>
+<span class="moviename">${title}</span>
+<span class="moviename"> Release Date: ${release_date}</span>
+
+</div>
+`
+  
+  upcomingmoviesection.appendChild(upcomingM);
+  });
+    }
+movieData(moviestored)
+upcomingData(upcomingstored)
