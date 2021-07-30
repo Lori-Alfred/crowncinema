@@ -8,7 +8,7 @@ const sliderImage3=document.querySelector('.slide3');
 const slideMovieTitle=document.querySelectorAll('.movietitle');
 const slideMovieDetails=document.querySelectorAll('.moviedetails');
 const slideBookNow=document.querySelector('.book');
-current=0;
+let current=0;
 const moviesection =document.querySelector('.moviessection');
 const upcomingmoviesection =document.querySelector('.upcomingmoviessection');
 
@@ -35,7 +35,7 @@ function navBarFunction () {
   }
   
 }
-mobileNavBar.addEventListener('click',navBarFunction )
+mobileNavBar.addEventListener('click',navBarFunction );
 
 
 
@@ -131,7 +131,7 @@ function slideLeft() {
 
  //fetch request for nowshowing movies
 
-  async function movieData (url) {
+   async function movieData (url) {
   let urlNow = await fetch(url);
   let moviesresponse = await urlNow.json();
   let moviesResults=moviesresponse.results;
@@ -154,7 +154,7 @@ function slideLeft() {
 
   // creating of elements in function for nowshowing
 
-  function showMovies (data) {
+function showMovies (data) {
   moviesection.innerHTML="";
 data.forEach(mov => {
   const{title,overview,backdrop_path,genre_ids,poster_path,id,video}=mov;

@@ -589,6 +589,21 @@ form label{
 }
 option{
     background-color: #161A1D;
+    color: #0CB8AE;
+}
+ .movietitless{
+    padding: 5px 0px;
+    width: 250px;
+    outline: none;
+    border: 1px solid rgba(47, 56, 63, 0.7);
+    
+    background: rgba(47, 56, 63, 0.7);
+    color: #ffffff;
+    border-radius: 5px;
+
+}
+option{
+    background-color: #161A1D;
 }
 .formbutton{
     margin-top: 10px;
@@ -841,7 +856,7 @@ display: none;
     width: 80%;
     opacity: 0.9;
     border-radius: 10px;
-    transform: translateX(20px);
+    transform: translateX(40px);
 
   
 }
@@ -964,7 +979,6 @@ display: none;
     
     }
     .buttonandimages button{
-      
         padding: 15px 50px;
     
     }
@@ -1035,13 +1049,41 @@ display: none;
         width: 300px;
         position: absolute;
         top: 50%;
-        left:2% ;
+        left:4% ;
     color: #ffffff;
         text-align: center;
         font-size: 1rem;
     
     }
-   
+    /* START OF BOOKINGS.HTML */
+    .bookingcontainer{
+        display: flex;
+        flex-wrap: wrap-reverse;
+        height: 150vh;
+        
+    }
+    .bookingcontainer img {
+        display: block;
+        height: auto;
+        width:100vw;
+    
+    }
+    .bookingformsection{
+        display: flex;
+        flex-direction: column;
+        padding-left: 30px;
+    }
+    .bookingformsection h1{
+        padding-top: 50px;
+        font-size:2rem;
+    }
+    .bookinginput {
+       width: 80vw;
+       
+    }
+    
+    
+    /* END OF BOOKINGS.HTML */
 
     /* footer styling */
     .footercontainer{
