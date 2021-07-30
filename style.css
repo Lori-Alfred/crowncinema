@@ -25,7 +25,7 @@ position:absolute;
 left: 0;
 background-color:rgba(0,0, 0, 0.3);
  width: 100%;
-
+z-index: 20;
 }
 .navbar{
     display: flex;
@@ -34,15 +34,16 @@ background-color:rgba(0,0, 0, 0.3);
     padding: 0px 40px;
     list-style: none;
     width: 100%;
+
   
 
 }
 
 
 
-.navlist{
-   margin-right:200px;
-}
+/* .navleft{
+   margin-right:100px;
+} */
 
 .navbar li a{
     text-decoration: none;
@@ -55,7 +56,16 @@ background-color:rgba(0,0, 0, 0.3);
     
     
 }
-
+.mobilenav{
+    display: none;
+    color: #EFEEEF;
+}
+.mobilenav:hover{
+    color: #7e337e;
+}
+.mobileul{
+    display: none;
+}
 /* end navbar styling */
 
 /* start of image slider styling */
@@ -101,18 +111,9 @@ width: 100%;
 
 
 
+
 }
-/* .slide1{
-    background-image: url(images/movie1.jpg); 
-   
-    
-}
-.slide2{
-    background-image: url(images/movie2.jpg);
-}
-.slide3{
-    background-image: url(images/movie3.jpg);
-} */
+
 
 .movietitle,.moviedetails,.playtrailer{
 display: block;
@@ -210,11 +211,12 @@ font-size: 5rem;
     padding-top: 10px;
     height: 125vh;
     position: relative;
-    overflow-x:auto;
--webkit-overflow-scrolling: touch;
+    
  
   
 }
+
+
 .nowshowingheader{
     text-align: center;
     font-size: 1.5rem;
@@ -237,12 +239,24 @@ grid-auto-flow: column;
  align-content: center;
  padding: 5px 15px;
 
+
  text-align: center;
+ overflow-x:auto;
+-webkit-overflow-scrolling: touch;
 
 
 }
 
 
+.moviessection::-webkit-scrollbar {
+    display: none;
+}
+
+
+.moviessection {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
 
 
 
@@ -348,6 +362,11 @@ color: #ffffff;
 
 }
 
+.buttonandimages button a{
+    text-decoration: none;
+    color: black;
+}
+
 .buttonandimages button:hover{
  
 background-color: #E80F0C;
@@ -366,8 +385,6 @@ color: #ffffff;
     padding-top: 10px;
     height: 85vh;
     position: relative;
-    overflow-x:auto;
-    -webkit-overflow-scrolling: touch;
     
 }
 
@@ -395,9 +412,22 @@ grid-auto-flow: column;
  align-content: center;
  padding: 5px 15px;
  text-align: center;
+ overflow-x:auto;
+    -webkit-overflow-scrolling: touch;
+    
  
  
 }
+.upcomingmoviessection::-webkit-scrollbar {
+    display: none;
+}
+
+
+.upcomingmoviessection {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
 .upcomingmovie{
     width:250px;
     height: 100%;
@@ -416,7 +446,7 @@ display: block;
     display: grid;
     grid-template-columns: 3fr 1fr;
     background-color: #000000;
-    height: 100vh;
+    height: 120vh;
    
 
 }
@@ -463,14 +493,14 @@ cursor: pointer;
 
 }
 .seats:not(.reserveds):hover{
-    background: rgba(186, 24, 27, 1);
-
+    
+transform: scale(1.2);
 }
 .reserveds{
     background-color:rgba(186, 24, 27, 0.66);
 }
 .selecteds{
-    background-color:rgba(186, 24, 27, 0.66);
+    background: rgba(186, 24, 27, 1);
 }
 .seatcategories p{
     color: #ffffff;
@@ -486,7 +516,7 @@ list-style:none;
 }
 .seatcategories ul li{
     position: relative;
-    /* padding-left: 20px; */
+  
     margin-left: 1rem;
     left: 20rem;
     
@@ -581,7 +611,7 @@ border-radius: 40px;
 .bookingcontainer{
     display: flex;
     justify-content: space-between;
-    height: 90vh;
+    height: 100vh;
     background-color: #000000;
     color: #ffffff;
     
@@ -647,7 +677,7 @@ color: #ffffff;
 /* start of footer */
 
 .footercontainer{
-    height: 65vh;
+    height: 70vh;
     display: grid;
     grid-template-columns: repeat(3,1fr);
     justify-items: center;
@@ -758,3 +788,281 @@ padding-bottom: 1rem;
 
 
 /* end of footer */
+
+@media screen and (max-width:480px) {
+  
+    /* nav bar styling */
+.navi{
+   /* display:block; */
+position:absolute;
+left: 0;
+background-color:rgba(0,0, 0, 0.3);
+ width: 100%;
+}
+ .navbar{
+    display: flex;
+    justify-content:space-evenly;
+    align-items:center;
+    /* padding: 0px 40px; */
+    list-style: none;
+    width: 100%;
+   
+  
+
+} 
+
+
+
+.navlist{
+display: none;
+ 
+}
+
+.navbar li a{
+    text-decoration: none;
+    color: #ffffff;
+    
+    
+}
+.navbar li a:hover{
+    color:#703170;
+    
+    
+}
+
+.mobilenav{
+    display: flex;
+}
+
+.mobileul{
+    display: none;
+    background-color:#161A1D;
+    height:60vh;
+    width: 80%;
+    opacity: 0.9;
+    border-radius: 10px;
+    transform: translateX(20px);
+
+  
+}
+.mobileul li {
+    text-align: center;
+    padding: 10px ;
+    padding-top: 70px;
+    list-style: none;
+  
+}
+.mobileul li a{
+    text-decoration: none;
+    color: #ffffff;
+   
+}
+.mobileul li a:hover{
+    color: #703170;
+   
+}
+
+/* end navbar styling */
+
+.slides{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:center;
+    padding-left:0px;
+    padding-right:0px;
+    align-items: center;
+    overflow-x: hidden;
+
+    
+    
+    
+    }
+    .slidewords{
+        text-align: center;
+        margin-top: 3rem;
+        
+  
+    }
+    .movietitle{
+        font-size: 1rem;
+        }
+        .slidewords .moviedetails{
+        font-size:0.8rem;
+        width: 300px;
+        line-height: 1rem;
+       
+        }
+     
+        
+        
+        .playtrailer{
+            text-align: center;
+        }
+        .playtrailer h2{
+     font-size: 0.7rem;
+        
+        }
+        
+        
+        .playtrailer .fas{
+            display: block;
+            color: #4D194D;
+            font-size: 1rem;
+            padding: 20px 0px;
+            cursor: pointer;
+      
+        
+        }
+    
+    @keyframes pop { 
+        0%{
+    font-size: 1rem;
+        }
+      
+        100%{
+   font-size: 2rem;
+        }
+        
+    }
+        
+        
+     
+    .nowshowingcontainer{
+        height: 120vh;
+      
+    }
+    .upcomingmoviescontainer{
+        height:80vh ;
+    }
+
+
+
+
+    /* bookings and reservation styling */
+    .bandr-container{
+
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        height: 60vh;  
+        overflow-x: hidden;
+        
+    }
+    .bookingwords{
+        text-align: center;
+        padding: 0 2px;
+        
+    }
+    .bookingwords p{
+        font-size: 0.8rem;
+       }
+       
+    
+    .buttonandimages{
+      margin-bottom: 3rem;
+    
+    }
+    .buttonandimages button{
+      
+        padding: 15px 50px;
+    
+    }
+   /* STYLING OF SEATS.HTML */
+
+   .theatrecontainer{
+    display: grid;
+    grid-template-columns:1fr;
+    
+    height: 170vh;
+   
+
+}
+.screen{
+
+    width: 80%;
+    height: 100px;
+    margin-top: 10px;
+    margin-left: 40px;
+
+    
+}
+
+.seats{
+   
+    width:20px;
+    height:20px;
+    margin:0.5rem 0.5rem;
+  
+
+    }
+
+    .seatcategories ul li{
+        margin-left: 0.7rem;
+        left: 3.5rem;
+        margin-top: 5px;
+        
+    }
+
+
+    .theatreform{
+        display: flex;
+        flex-direction: column;
+        /* align-items: center; */
+        justify-content: flex-start;
+        color: #ffffff;
+        padding-left: 70px;
+        padding-right: 10px;
+        padding-top: 10px;
+        overflow: hidden;
+    }
+  
+    .theatreformheader{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-right: 20px;
+    
+    }
+    
+    .formbutton{
+        margin-top: 30px;
+   
+    
+    }
+
+    .foodbackground h1{
+        width: 300px;
+        position: absolute;
+        top: 50%;
+        left:2% ;
+    color: #ffffff;
+        text-align: center;
+        font-size: 1rem;
+    
+    }
+   
+
+    /* footer styling */
+    .footercontainer{
+        height: 150vh;
+        display: grid;
+        grid-template-columns:1fr;
+        justify-items: left;
+        padding-top: 2rem;
+        font-size: 1rem;
+        
+           }
+           .sitemap{
+            margin-top: 50px;
+            }
+    
+           .contacts{
+            margin-top: 50px;
+            }
+            .copyright p{
+                font-size: 0.5rem;
+            }
+
+    
+}

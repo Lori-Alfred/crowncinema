@@ -11,6 +11,8 @@ const slideBookNow=document.querySelector('.book');
 current=0;
 const moviesection =document.querySelector('.moviessection');
 const upcomingmoviesection =document.querySelector('.upcomingmoviessection');
+
+//api url
 const baseUrl ='https://api.themoviedb.org/3';
 const apiKey ='api_key=06b3976eb4a79e0488be027200e686a1';
 const nowPlaying = '/movie/now_playing?';
@@ -19,8 +21,23 @@ const moviestored= baseUrl+nowPlaying+apiKey ;
 const upcomingstored= baseUrl+upcomingMovies+apiKey ;
 const imageBaseUrl='https://image.tmdb.org/t/p/w500';
 const backgroundImageUrl='https://image.tmdb.org/t/p/original';
+const movieTrailer='/movie/{movie_id}/videos?';
+const fullTrailer=baseUrl+movieTrailer+apiKey;
 
-console.log(slideMovieDetails[0]);
+const mobileNavBar=document.querySelector('.mobilenav');
+
+function navBarFunction () {
+  let mobileUi=document.querySelector('.mobileul');
+  if (mobileUi.style.display === "block") {
+    mobileUi.style.display = "none";
+  } else {
+    mobileUi.style.display = "block";
+  }
+  
+}
+mobileNavBar.addEventListener('click',navBarFunction )
+
+
 
 // image slider 
 
@@ -32,14 +49,15 @@ console.log(slideMovieDetails[0]);
   
     }
 
-    
+  //collection of data from api for  slider heropage  
 function  apiSlides (dt) {
 dt.forEach((elem ,index) => {
-  const{title,overview,backdrop_path}=elem;
+  const{title,overview,backdrop_path,id}=elem;
   if(index===0){
     sliderImage1.style.backgroundImage=`url(${backgroundImageUrl+backdrop_path})`;
     slideMovieTitle[0].textContent=`${title}`;
     slideMovieDetails[0].textContent=`${overview}`;
+    
 
 
   }
@@ -57,14 +75,9 @@ dt.forEach((elem ,index) => {
   }
 
 });
-  
- 
-
-
 
     
   };
-
 
 backgroundData(moviestored);
 //  reset slider
@@ -116,7 +129,7 @@ function slideLeft() {
   startSlide();
   
 
- 
+ //fetch request for nowshowing movies
 
   async function movieData (url) {
   let urlNow = await fetch(url);
@@ -127,6 +140,8 @@ function slideLeft() {
   
 
   }
+
+  //fetch request for upcoming movies
   async function upcomingData (url) {
   let urlNow = await fetch(url);
   let upcomingresponse = await urlNow.json();
@@ -137,7 +152,7 @@ function slideLeft() {
 
   }
 
-  
+  // creating of elements in function for nowshowing
 
   function showMovies (data) {
   moviesection.innerHTML="";
@@ -158,7 +173,7 @@ movies.innerHTML =`<div class="imageandtitle">
 
 </div>
 <div class="watchtrailer">
-<i class="far fa-play-circle"><a href="${video}">Watch Trailer</a> </i>
+<i class="far fa-play-circle"><a href="#">Watch Trailer</a> </i>
 </div>
 <div class="bookbutton">
 <button><a href="seats.html">Book Now</a></button>
@@ -167,10 +182,11 @@ movies.innerHTML =`<div class="imageandtitle">
 
 
 moviesection.appendChild(movies);
+
 });
   }
 
-
+  
 
 function upcoming (d) {
   upcomingmoviesection.innerHTML="";
@@ -191,5 +207,7 @@ function upcoming (d) {
   upcomingmoviesection.appendChild(upcomingM);
   });
     }
-movieData(moviestored)
-upcomingData(upcomingstored)
+movieData(moviestored);
+upcomingData(upcomingstored);
+
+
