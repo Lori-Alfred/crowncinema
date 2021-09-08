@@ -1,5 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500&display=swap");
-
+:root {
+  --size: 1;
+  --background: #000;
+  --color1: #d25778;
+  --color2: #ec585c;
+  --color3: #e7d155;
+  --color4: #56a8c6;
+}
 * {
   margin: 0;
   padding: 0;
@@ -8,6 +15,42 @@
 html {
   scroll-behavior: smooth;
 }
+.ticketloader {
+  display: none;
+  opacity: 1;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(22, 26, 29, 0.95);
+  color: #ffffff;
+}
+.ticketloaderanimation h3 {
+  display: inline;
+  font-size: 1.5rem;
+}
+.ticketloaderanimation svg {
+  animation-name: ticketloader;
+  animation-duration: 2s;
+  animation-delay: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+.ticketloaderanimation p {
+  margin-top: 1rem;
+}
+@keyframes ticketloader {
+  from {
+    transform: rotateZ(0deg);
+    fill: rgb(139, 0, 139);
+  }
+  to {
+    transform: rotateZ(100deg);
+  }
+}
+/* .seatwrapper {
+  display: none;
+  opacity: 0;
+} */
 body {
   font-family: "Roboto Slab", serif;
   display: flex;
@@ -16,7 +59,89 @@ body {
 
   overflow-x: hidden;
 }
+/* styling of ticket modal */
+.ticketmodal {
+  display: none;
+  width: 650px;
 
+  height: 320px;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  background-color: rgba(22, 26, 29, 0.95);
+  color: #ffffff;
+  z-index: 4;
+  /* margin: 100px auto; */
+  transition: all 300ms cubic-bezier(0.03, 0.98, 0.53, 0.99) 0s;
+  background: linear-gradient(
+    to right,
+    var(--color1),
+    var(--color2),
+    var(--color3),
+    var(--color4)
+  );
+  border-radius: 20px;
+  padding: 5px;
+}
+
+.ticketmodal:before,
+.ticketmodal:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 130px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  z-index: 2;
+  background-color: var(--background);
+}
+
+.ticketmodal:before {
+  border: 5px solid var(--color1);
+  left: -35px;
+}
+
+.ticketmodal:after {
+  border: 5px solid var(--color4);
+  right: -35px;
+}
+
+.ticket-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: var(--background);
+  border-radius: 15px;
+}
+.printticket,
+.closeticket {
+  margin-top: 1rem;
+  padding: 5px 30px;
+  border: solid 1px #660708;
+  border-radius: 30px;
+  outline: none;
+  background-color: #660708;
+  color: #ffffff;
+}
+.printticket:hover,
+.closeticket:hover {
+  background-color: rgba(232, 15, 12, 1);
+}
+.ticketinfo label {
+  display: block;
+  padding-bottom: 0.5rem;
+}
+.notice {
+  margin-top: 1rem;
+  opacity: 0.5;
+}
 /* nav bar styling */
 .navi {
   position: absolute;
@@ -386,6 +511,7 @@ body {
 /* START OF SEATS.HTML */
 
 .theatrecontainer {
+  position: relative;
   display: grid;
   grid-template-columns: 3fr 1fr;
   background-color: #000000;
