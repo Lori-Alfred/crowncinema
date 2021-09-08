@@ -5,7 +5,8 @@ let prices = document.getElementById("price");
 let pickDate = document.getElementById("pickadate");
 let enterName = document.getElementById("entername");
 const seatContainer = document.querySelector(".theatreroom");
-
+const ticketSeatNumber = document.querySelector(".ticketseatnumber");
+const ticketMovieName = document.querySelector(".ticketmoviename");
 const closeTicket = document.querySelector(".closeticket");
 const printTicket = document.querySelector(".printticket");
 const formBox = document.querySelector(".formbox");
@@ -36,10 +37,14 @@ function loaderScript(e) {
     ticketLoader.style.display = "none";
     ticketLoader.style.opacity = "0";
   }, 5000);
-  setTimeout(() => {
-    ticketModal.style.display = "block";
-    ticketName.value = enterName.value;
-  }, 1000);
+  if (formBox.value) {
+    setTimeout(() => {
+      ticketModal.style.display = "block";
+    }, 1000);
+  } else {
+    alert("please fill all details in form and ensure you select a seat");
+  }
+
   closeTicket.addEventListener("click", () => {
     ticketModal.style.display = "none";
     seatwrapper.style.opacity = "1";
@@ -48,11 +53,12 @@ function loaderScript(e) {
     ticketModal.style.display = "none";
   });
   printTicket.addEventListener("click", () => {
-    window.print();
+    window.print(ticketModal);
   });
 }
 document.querySelector(".formbutton").addEventListener("click", loaderScript);
-//ticket gneration function
+
+// form priceupdate
 
 function updatedSelected() {
   prices.value = 12;
@@ -69,7 +75,9 @@ function seatFunction(e) {
     !e.target.classList.contains("reserveds")
   ) {
     e.target.classList.toggle("selecteds");
-
+    if (e.target.hasAttribute("title")) {
+      ticketSeatNumber.innerText = e.target.getAttribute("title");
+    }
     updatedSelected();
   }
 }
@@ -92,6 +100,22 @@ function showMovies(data) {
     options.innerText = `${title}`;
     movieTitle.appendChild(options);
   });
+
+  function optionChange() {
+    let it = movieTitle.selectedIndex;
+    let selectedP = movieTitle.options[it].value;
+    ticketMovieName.textContent = selectedP;
+  }
+  movieTitle.addEventListener("change", optionChange);
 }
 
 movieData(moviestored);
+
+// ticket number generation
+document.querySelector(".ticketnumber").textContent =
+  "#" + "CC" + Math.trunc(Math.random() * 100);
+
+//selected name
+document.querySelector(".formbutton").addEventListener("click", () => {
+  ticketName.textContent = enterName.value;
+});
