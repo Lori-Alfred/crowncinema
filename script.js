@@ -17,12 +17,12 @@ const baseUrl = "https://api.themoviedb.org/3";
 const apiKey = "api_key=06b3976eb4a79e0488be027200e686a1";
 const nowPlaying = "/movie/now_playing?";
 const upcomingMovies = "/movie/upcoming?";
-const moviestored = baseUrl + nowPlaying + apiKey;
+const videoAppend = "&append_to_response=videos";
+const moviestored = baseUrl + nowPlaying + apiKey + videoAppend;
+
 const upcomingstored = baseUrl + upcomingMovies + apiKey;
 const imageBaseUrl = "https://image.tmdb.org/t/p/w500";
 const backgroundImageUrl = "https://image.tmdb.org/t/p/original";
-const movieTrailer = "/movie/{movie_id}/videos?";
-const fullTrailer = baseUrl + movieTrailer + apiKey;
 
 const mobileNavBar = document.querySelector(".mobilenav");
 
@@ -155,8 +155,9 @@ function showMovies(data) {
       id,
       video,
     } = mov;
-
+    let trailer = baseUrl + "/movie/" + id + "/videos?" + apiKey;
     let movies = document.createElement("div");
+
     movies.className = "movie";
     movies.innerHTML = `<div class="imageandtitle">
 <img src="${imageBaseUrl + poster_path}" alt="${title}">
@@ -177,6 +178,27 @@ function showMovies(data) {
 </div>`;
 
     moviesection.appendChild(movies);
+    // let trailer = baseUrl + "/movie/" + id + "/videos?" + apiKey;
+
+    async function trailerApi(url) {
+      let urlTrailerNow = await fetch(url);
+      let trailerResponse = await urlTrailerNow.json();
+      let trailerResults = trailerResponse.results;
+      for (const youtubev of trailerResults) {
+        const { key } = youtubev;
+        let youtubeTrailerLink = "https://www.youtube.com/watch?v=" + key;
+        // <iframe
+        //   width="560"
+        //   height="315"
+        //   src="https://www.youtube.com/embed/wo1kO8m2Nik"
+        //   title="YouTube video player"
+        //   frameborder="0"
+        //   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        //   allowfullscreen
+        // ></iframe>;
+      }
+    }
+    trailerApi(trailer);
   });
 }
 
