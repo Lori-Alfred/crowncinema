@@ -303,6 +303,7 @@ body {
 /* start of nowshowingcontainer */
 
 .nowshowingcontainer {
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -400,6 +401,9 @@ body {
   text-decoration: none;
   padding-left: 5px;
 }
+.fa-play-circle a:hover {
+  color: #0cb8ae;
+}
 
 .bookbutton button {
   padding: 10px 80px;
@@ -413,6 +417,31 @@ body {
 .bookbutton button a {
   text-decoration: none;
   color: #ffffff;
+}
+
+/* video modal */
+.youtubemodal {
+  display: none;
+  position: absolute;
+  /* width: 50vw; */
+  width: 70vw;
+  /* height: 65vh; */
+  height: 70vh;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #000000;
+}
+.closemodal {
+  float: right;
+}
+.closemodal:hover {
+  color: #0cb8ae;
+}
+.frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
 /* end of now showing */
@@ -822,7 +851,7 @@ textarea {
 
 /* end of footer */
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 500px) {
   /* start of ticket modal */
   .ticketmodal {
     display: none;
@@ -941,6 +970,12 @@ textarea {
   .nowshowingcontainer {
     height: 120vh;
   }
+  .youtubemodal {
+    width: 90vw;
+    height: 230px;
+    margin: 0 5px;
+  }
+
   .upcomingmoviescontainer {
     height: 80vh;
   }
