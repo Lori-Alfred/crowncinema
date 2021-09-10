@@ -11,6 +11,7 @@ const slideBookNow = document.querySelector(".book");
 let current = 0;
 const moviesection = document.querySelector(".moviessection");
 const upcomingmoviesection = document.querySelector(".upcomingmoviessection");
+const nowShowingCont = document.querySelector(".nowshowingcontainer");
 
 //api url
 const baseUrl = "https://api.themoviedb.org/3";
@@ -120,7 +121,7 @@ setInterval(() => {
     current = -1;
   }
   slideRight();
-}, 6000);
+}, 4000);
 startSlide();
 
 //fetch request for nowshowing movies
@@ -175,18 +176,20 @@ function showMovies(data) {
     
     </div>
     <div class="watchtrailer">
-    <i class="far fa-play-circle "><a class="trailerplay" href="#" >Watch Trailer</a> </i>
+    <i class="far fa-play-circle trailerplay "> Watch Trailer</i>
+  
     </div>
     <div class="bookbutton">
     <button><a href="seats.html">Book Now</a></button>
     </div>`;
+
         function videoPopUp(e) {
           if (e.target.classList.contains("trailerplay")) {
             const iframeModal = document.querySelector(".frame");
             iframeModal.src = youtubeTrailerLink;
             const youtubeModal = document.querySelector(".youtubemodal");
-
             youtubeModal.style.display = "block";
+
             const closeModal = document.querySelector(".closemodal");
             function closeModalFunction() {
               youtubeModal.style.display = "none";
@@ -197,6 +200,7 @@ function showMovies(data) {
         }
 
         moviesection.appendChild(movies);
+
         movies.addEventListener("click", videoPopUp);
       });
     }
