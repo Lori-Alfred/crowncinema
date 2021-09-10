@@ -156,48 +156,61 @@ function showMovies(data) {
       video,
     } = mov;
     let trailer = baseUrl + "/movie/" + id + "/videos?" + apiKey;
-    let movies = document.createElement("div");
+    function youtubetry(params) {
+      let re = params.split();
+      re.forEach((element) => {
+        let youtubeTrailerLink = "https://www.youtube.com/embed/" + element;
+        let movies = document.createElement("div");
 
-    movies.className = "movie";
-    movies.innerHTML = `<div class="imageandtitle">
-<img src="${imageBaseUrl + poster_path}" alt="${title}">
+        movies.className = "movie";
+        movies.innerHTML = `<div class="imageandtitle">
+    <img src="${imageBaseUrl + poster_path}" alt="${title}">
+    
+    </div>
+    <span class="moviename">${title}</span>
+    <span class="genre"></span>
+    <div class="moviedetails">
+    <p>${overview}</p>
+    
+    
+    </div>
+    <div class="watchtrailer">
+    <i class="far fa-play-circle "><a class="trailerplay" href="#" >Watch Trailer</a> </i>
+    </div>
+    <div class="bookbutton">
+    <button><a href="seats.html">Book Now</a></button>
+    </div>`;
+        function videoPopUp(e) {
+          if (e.target.classList.contains("trailerplay")) {
+            const iframeModal = document.querySelector(".frame");
+            iframeModal.src = youtubeTrailerLink;
+            const youtubeModal = document.querySelector(".youtubemodal");
 
-</div>
-<span class="moviename">${title}</span>
-<span class="genre"></span>
-<div class="moviedetails">
-<p>${overview}</p>
+            youtubeModal.style.display = "block";
+            const closeModal = document.querySelector(".closemodal");
+            function closeModalFunction() {
+              youtubeModal.style.display = "none";
+              iframeModal.src = "#";
+            }
+            closeModal.addEventListener("click", closeModalFunction);
+          }
+        }
 
+        moviesection.appendChild(movies);
+        movies.addEventListener("click", videoPopUp);
+      });
+    }
 
-</div>
-<div class="watchtrailer">
-<i class="far fa-play-circle"><a href="#">Watch Trailer</a> </i>
-</div>
-<div class="bookbutton">
-<button><a href="seats.html">Book Now</a></button>
-</div>`;
-
-    moviesection.appendChild(movies);
     // let trailer = baseUrl + "/movie/" + id + "/videos?" + apiKey;
 
     async function trailerApi(url) {
       let urlTrailerNow = await fetch(url);
       let trailerResponse = await urlTrailerNow.json();
-      let trailerResults = trailerResponse.results;
-      for (const youtubev of trailerResults) {
-        const { key } = youtubev;
-        let youtubeTrailerLink = "https://www.youtube.com/watch?v=" + key;
-        // <iframe
-        //   width="560"
-        //   height="315"
-        //   src="https://www.youtube.com/embed/wo1kO8m2Nik"
-        //   title="YouTube video player"
-        //   frameborder="0"
-        //   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        //   allowfullscreen
-        // ></iframe>;
-      }
+      let trailerResults = trailerResponse.results[0].key;
+
+      youtubetry(trailerResults);
     }
+
     trailerApi(trailer);
   });
 }
